@@ -18,7 +18,7 @@ const HomeHeroSection = () => {
           transition={{ duration: 0.3, ease: "easeOut" }}
           viewport={{ once: true }}
         >
-          <h1 className="text-4xl md:text-5xl font-extrabold text-[var(--gray-dark)] leading-tight">
+          <h1 className="text-4xl lg:text-5xl font-extrabold text-[var(--gray-dark)] leading-tight">
             Empower Your <span className="text-[var(--purple)]">Business</span>{" "}
             & Skills
           </h1>
