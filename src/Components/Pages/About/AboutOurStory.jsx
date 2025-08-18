@@ -1,68 +1,87 @@
-"use client"
+"use client";
 
-import { FaWrench, FaClock, FaStar } from "react-icons/fa";
+import { FaLightbulb, FaGlobe, FaHandsHelping } from "react-icons/fa";
+import { motion } from "framer-motion";
+
+const storyData = [
+  {
+    title: "Origin",
+    icon: <FaGlobe className="text-[var(--blue)] text-4xl" />,
+    description:
+      "JacSkills was founded to bridge the gap between education and real-world application. We empower individuals with practical skills and provide businesses with professional solutions, creating a hub for continuous growth and learning.",
+    image:
+      "https://plus.unsplash.com/premium_photo-1676585567192-3eedaf478e54?w=500&auto=format&fit=crop&q=60",
+  },
+  {
+    title: "Vision",
+    icon: <FaLightbulb className="text-[var(--yellow)] text-4xl" />,
+    description:
+      "Our vision is to be the go-to platform connecting skill development with business solutions. We aim to help learners and organizations thrive in a competitive landscape through practical knowledge and professional expertise.",
+    image:
+      "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=500&auto=format&fit=crop&q=60",
+  },
+  {
+    title: "Mission",
+    icon: <FaHandsHelping className="text-[var(--green)] text-4xl" />,
+    description:
+      "Our mission is to empower students and business owners by providing expert-led courses, hands-on workshops, and professional services that drive tangible results and foster growth for all stakeholders.",
+    image:
+      "http://plus.unsplash.com/premium_photo-1669686968235-72705fc13694?w=500&auto=format&fit=crop&q=60",
+  },
+];
 
 const AboutOurStory = () => {
   return (
-    <section className="bg-[var(--white)] px-4 md:px-8 py-12 md:py-12">
-      <div className="grid gap-10">
-        <h2 className="text-3xl md:text-4xl font-bold text-[var(--primary-blue)] text-center">
-          Our Story
+    <section className="px-4 md:px-8 py-12 bg-[var(--offwhite)]">
+      {/* Section Header */}
+      <div className="text-center max-w-2xl mx-auto mb-12">
+        <h2 className="text-3xl md:text-4xl font-bold text-[var(--gray-dark)]">
+          Our <span className="text-[var(--purple)]">Story</span>
         </h2>
-        <p className="text-[var(--gray-text-muted)] text-lg text-center max-w-3xl mx-auto">
-          With over 20+ years of hands-on experience,{" "}
-          <strong className="text-[var(--primary-green)]">Arshad</strong>{" "}
-          founded this workshop with a passion for excellence in auto repair and
-          a deep commitment to customer satisfaction. What began as a small
-          garage is now a trusted name in reliable automotive services.
+        <p className="mt-4 text-lg text-[var(--gray)]">
+          Bridging the gap between skills and services, empowering both students
+          and businesses to reach their full potential.
         </p>
+      </div>
 
-        <div className="grid md:grid-cols-3 gap-8 mt-10">
-          {/* Milestone 1 */}
-          <div className="bg-[var(--white)] shadow-md rounded-xl p-6 border border-[var(--gray-border)] hover:shadow-lg transition-all duration-300">
-            <div className="text-[var(--primary-blue)] text-3xl mb-4">
-              <FaWrench />
+      {/* Story Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {storyData.map((item, index) => (
+          <motion.div
+            key={index}
+            className="relative bg-[var(--white)] p-6 rounded-3xl shadow-lg hover:shadow-2xl hover:scale-105 transition-transform duration-500 overflow-hidden flex flex-col items-center text-center"
+            initial={{ opacity: 0, y: 60 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: index * 0.3 }}
+            viewport={{ once: true }}
+          >
+            {/* Background Image */}
+            <div className="absolute inset-0 rounded-3xl overflow-hidden">
+              <img
+                src={item.image}
+                alt={item.title}
+                className="w-full h-full object-cover opacity-30"
+              />
+              {/* Optional Gradient Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-tr from-[var(--purple-light)] to-[var(--blue-light)] opacity-20"></div>
             </div>
-            <h3 className="text-xl font-semibold text-[var(--gray-text-dark)] mb-2">
-              Started with Passion
-            </h3>
-            <p className="text-[var(--gray-text-muted)]">
-              Arshad started the workshop after years of experience working in
-              leading service centers, driven by a vision to offer honest and
-              skilled repairs.
-            </p>
-          </div>
 
-          {/* Milestone 2 */}
-          <div className="bg-[var(--white)] shadow-md rounded-xl p-6 border border-[var(--gray-border)] hover:shadow-lg transition-all duration-300">
-            <div className="text-[var(--primary-green)] text-3xl mb-4">
-              <FaClock />
+            {/* Icon Circle */}
+            <div className="relative z-10 mb-4 w-16 h-16 flex items-center justify-center rounded-full bg-[var(--white)] shadow-md">
+              {item.icon}
             </div>
-            <h3 className="text-xl font-semibold text-[var(--gray-text-dark)] mb-2">
-              Years of Experience
-            </h3>
-            <p className="text-[var(--gray-text-muted)]">
-              With more than 20+ years in the field, Arshad has built a
-              reputation for precision, timely service, and lasting results in
-              car maintenance.
-            </p>
-          </div>
 
-          {/* Milestone 3 */}
-          <div className="bg-[var(--white)] shadow-md rounded-xl p-6 border border-[var(--gray-border)] hover:shadow-lg transition-all duration-300">
-            <div className="text-[var(--accent-yellow)] text-3xl mb-4">
-              <FaStar />
+            {/* Content */}
+            <div className="relative z-10 flex flex-col justify-center items-center">
+              <h3 className="text-xl md:text-2xl font-semibold text-[var(--gray-dark)] mb-3">
+                {item.title}
+              </h3>
+              <p className="text-[var(--gray)] text-base md:text-lg leading-relaxed">
+                {item.description}
+              </p>
             </div>
-            <h3 className="text-xl font-semibold text-[var(--gray-text-dark)] mb-2">
-              Trusted by Customers
-            </h3>
-            <p className="text-[var(--gray-text-muted)]">
-              Today, our workshop is known for reliability, transparent pricing,
-              and a loyal customer base who trust us with everything from oil
-              changes to engine diagnostics.
-            </p>
-          </div>
-        </div>
+          </motion.div>
+        ))}
       </div>
     </section>
   );

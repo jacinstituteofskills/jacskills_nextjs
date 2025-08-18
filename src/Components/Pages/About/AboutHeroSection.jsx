@@ -1,32 +1,47 @@
-import { PrimaryButton } from "@/Components/ReUseAbleComponents/Buttons/Buttons";
+"use client";
+
+import {
+  PrimaryButton,
+  SecondaryButton,
+} from "@/Components/ReUseAbleComponents/Buttons/Buttons";
 import Link from "next/link";
 
 const AboutHeroSection = () => {
   return (
-    <section
-      className="relative h-[80vh] md:h-[100vh] max-h-[600px] flex items-center justify-center bg-cover bg-center bg-no-repeat overflow-hidden"
-      style={{
-        backgroundImage:
-          "url('https://images.unsplash.com/photo-1490223966554-5de0fd551b91?w=1200&auto=format&fit=crop&q=80')",
-      }}
-    >
-      {/* Overlay */}
-      <div className="absolute inset-0 bg-[var(--black)]/50" />
+    <section className="relative bg-[var(--black)] text-center overflow-hidden px-4 md:px-8 py-12 md:py-20">
+      {/* Background Overlay */}
+      <div className="absolute inset-0">
+        <img
+          src="https://images.unsplash.com/photo-1674027001840-1a3e834eb73f?w=500&auto=format&fit=crop&q=60"
+          alt="About JacSkills background"
+          className="w-full h-full object-cover opacity-50"
+        />
+      </div>
 
       {/* Content */}
-      <div className="relative z-10 text-center px-4 max-w-4xl">
-        <h1 className="text-[var(--white)] text-3xl md:text-4xl font-bold leading-snug drop-shadow-md">
-          Reliable Car Repair & Maintenance Experts
+      <div className="relative z-10 max-w-3xl mx-auto">
+        {/* Title */}
+        <h1 className="text-4xl md:text-5xl font-bold text-[var(--white)] mb-4">
+          About <span className="text-[var(--yellow)]">JacSkills</span>
         </h1>
-        <p className="mt-3 text-[var(--gray-surface)] text-base md:text-lg font-normal drop-shadow-sm">
-          Dedicated to excellence in car maintenance and repair, Arshad Auto
-          Workshop has been your trusted automotive partner for years. Discover
-          how we combine expertise with care.
+
+        {/* Description */}
+        <p className="text-lg md:text-2xl text-[var(--offwhite)] mb-8">
+          Empowering <span className="text-[var(--purple-light)]">skills</span>{" "}
+          &amp; <span className="text-[var(--green-light)]">solutions</span> for
+          the future. We provide expert-led courses and professional services to
+          help students and businesses grow effectively.
         </p>
 
-        <Link href="/services">
-          <PrimaryButton buttonName={"View Our Services"} className="mt-6" />
-        </Link>
+        {/* CTA Buttons */}
+        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <Link href={"/courses"}>
+            <PrimaryButton buttonName="Explore Courses" />
+          </Link>
+          <Link href={"/services"}>
+            <SecondaryButton buttonName="Our Services" />
+          </Link>
+        </div>
       </div>
     </section>
   );

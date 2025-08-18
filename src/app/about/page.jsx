@@ -1,11 +1,14 @@
-import React from 'react'
+import AboutHeroSection from "@/Components/Pages/About/AboutHeroSection";
+import AboutOurStory from "@/Components/Pages/About/AboutOurStory";
+import React from "react";
 
 const AboutPage = () => {
   return (
     <div>
-      About Page
+      <AboutHeroSection />
+      <AboutOurStory />
     </div>
-  )
-}
+  );
+};
 
-export default AboutPage
+export default AboutPage;

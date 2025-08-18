@@ -71,7 +71,7 @@ const NavigationBar = () => {
             animate={{ x: 0 }}
             exit={{ x: "-100%" }}
             transition={{ type: "tween", duration: 0.3 }}
-            className="fixed top-0 left-0 w-64 h-full bg-[var(--white)] shadow-lg z-50 flex flex-col"
+            className="fixed top-0 left-0 w-64 h-full bg-[var(--white)] shadow-lg z-50 flex flex-col overflow-y-auto"
           >
             {/* Close Button */}
             <div className="px-4 py-2 border-b border-[var(--gray-light)] shadow-md">
