@@ -50,9 +50,9 @@ const AboutOurStory = () => {
           <motion.div
             key={index}
             className="relative bg-[var(--white)] p-6 rounded-3xl shadow-lg hover:shadow-2xl hover:scale-105 transition-transform duration-500 overflow-hidden flex flex-col items-center text-center"
-            initial={{ opacity: 0, y: 60 }}
+            initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: index * 0.3 }}
+            transition={{ duration: 0.7 }}
             viewport={{ once: true }}
           >
             {/* Background Image */}
@@ -73,10 +73,10 @@ const AboutOurStory = () => {
 
             {/* Content */}
             <div className="relative z-10 flex flex-col justify-center items-center">
-              <h3 className="text-xl md:text-2xl font-semibold text-[var(--gray-dark)] mb-3">
+              <h3 className="text-2xl md:text-3xl font-extrabold text-[var(--black)] mb-3">
                 {item.title}
               </h3>
-              <p className="text-[var(--gray)] text-base md:text-lg leading-relaxed">
+              <p className="text-[var(--gray-dark)] text-lg md:text-xl leading-relaxed">
                 {item.description}
               </p>
             </div>
