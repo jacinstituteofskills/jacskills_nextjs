@@ -103,7 +103,7 @@ const AboutWhatWeDo = () => {
         <motion.div
           initial={{ opacity: 0, x: -100 }}
           whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.3 }}
           viewport={{ once: true }}
           className="bg-[var(--offwhite)] p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300"
         >
@@ -136,7 +136,7 @@ const AboutWhatWeDo = () => {
         <motion.div
           initial={{ opacity: 0, x: 100 }}
           whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.3 }}
           viewport={{ once: true }}
           className="bg-[var(--offwhite)] p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300"
         >

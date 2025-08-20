@@ -52,9 +52,9 @@ const HomeWhyChooseUs = () => {
           <motion.div
             key={index}
             className="bg-[var(--white)] p-6 rounded-xl shadow-md flex flex-col items-center text-center"
-            initial={{ opacity: 0, scale: 0.8 }}
+            initial={{ opacity: 0, scale: 0.5 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.7 }}
             viewport={{ once: true }}
           >
             <div className="mb-4">{point.icon}</div>
