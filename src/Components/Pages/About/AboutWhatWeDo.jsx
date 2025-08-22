@@ -5,7 +5,6 @@ import {
   FaPaintBrush,
   FaBullhorn,
   FaLaptopCode,
-  FaMobileAlt,
 } from "react-icons/fa";
 import { MdManageAccounts } from "react-icons/md";
 import { RiBookOpenLine, RiComputerLine } from "react-icons/ri";
@@ -41,11 +40,6 @@ const services = [
     title: "Web Development",
     icon: <FaLaptopCode className="text-[var(--blue-dark)] text-3xl" />,
     desc: "Modern, responsive websites that deliver functionality, speed, and great UX.",
-  },
-  {
-    title: "Mobile App Development",
-    icon: <FaMobileAlt className="text-[var(--green-dark)] text-3xl" />,
-    desc: "Cross-platform mobile applications with sleek design and powerful performance.",
   },
 ];
 
@@ -114,7 +108,7 @@ const AboutWhatWeDo = () => {
             {services.map((service, index) => (
               <div
                 key={index}
-                className="group bg-[var(--white)] p-5 rounded-xl shadow hover:shadow-xl transition-transform duration-300"
+                className="group bg-[var(--white)] p-5 rounded-xl shadow hover:shadow-xl transition-transform duration-300 sm:min-h-48"
               >
                 <div className="flex items-center gap-4 mb-3">
                   <div className="p-3 rounded-full bg-[var(--offwhite)] group-hover:bg-[var(--blue-light)] transition">
@@ -147,7 +141,7 @@ const AboutWhatWeDo = () => {
             {courses.map((course, index) => (
               <div
                 key={index}
-                className="group bg-[var(--white)] p-5 rounded-xl shadow hover:shadow-xl transition-transform duration-300"
+                className="group bg-[var(--white)] p-5 rounded-xl shadow hover:shadow-xl transition-transform duration-300 sm:min-h-48"
               >
                 <div className="flex items-center gap-4 mb-3">
                   <div className="p-3 rounded-full bg-[var(--offwhite)] group-hover:bg-[var(--purple-light)] transition">

@@ -66,14 +66,6 @@ const HomeCoursesOverview = () => {
       {/* Courses Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {courses.map((course, index) => (
-          // <motion.div
-          //   key={index}
-          //   className="bg-[var(--white)] rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 flex flex-col group"
-          //   initial={{ opacity: 0, y: 60 }}
-          //   whileInView={{ opacity: 1, y: 0 }}
-          //   transition={{ duration: 0.6 }}
-          //   viewport={{ once: true }}
-          // >
           <motion.div
             key={index}
             className="bg-[var(--white)] rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 flex flex-col group"
@@ -90,7 +82,7 @@ const HomeCoursesOverview = () => {
               />
             </div>
             <div className="p-6 flex flex-col flex-grow">
-              <h3 className="text-xl font-semibold text-[var(--gray-dark)] mb-3">
+              <h3 className="text-xl font-semibold text-[var(--green-dark)] mb-3">
                 {course.title}
               </h3>
               <p className="text-[var(--gray)] text-base leading-relaxed flex-grow">

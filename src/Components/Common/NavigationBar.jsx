@@ -116,13 +116,13 @@ const NavigationBar = () => {
             </nav>
 
             {/* Mobile Contact Button */}
-            <div className="px-4 pb-6">
+            <Link href={"/contact"} className="px-4 pb-6">
               <PrimaryButton
                 buttonName="Let's Talk"
                 className="w-full"
                 onClick={() => setIsOpen(false)}
               />
-            </div>
+            </Link>
           </motion.div>
         )}
       </AnimatePresence>
