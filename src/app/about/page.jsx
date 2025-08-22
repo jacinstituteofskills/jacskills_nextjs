@@ -1,3 +1,4 @@
+import AboutCallToAction from "@/Components/Pages/About/AboutCallToAction";
 import AboutHeroSection from "@/Components/Pages/About/AboutHeroSection";
 import AboutImpactAndAchievements from "@/Components/Pages/About/AboutImpactAndAchievements";
 import AboutMeetOurTeam from "@/Components/Pages/About/AboutMeetOurTeam";
@@ -17,6 +18,7 @@ const AboutPage = () => {
       <AboutWhyChooseJacSkills />
       <AboutMeetOurTeam />
       <AboutImpactAndAchievements />
+      <AboutCallToAction />
     </div>
   );
 };
