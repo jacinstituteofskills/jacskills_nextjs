@@ -67,14 +67,14 @@ const NavigationBar = () => {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ x: "-100%" }}
-            animate={{ x: 0 }}
-            exit={{ x: "-100%" }}
+            initial={{ y: "-100%" }}
+            animate={{ y: 0 }}
+            exit={{ y: "-100%" }}
             transition={{ type: "tween", duration: 0.3 }}
-            className="fixed top-0 left-0 w-64 h-full bg-[var(--white)] shadow-lg z-50 flex flex-col overflow-y-auto"
+            className="fixed top-0 left-0 w-full h-auto bg-[var(--white)] shadow-lg z-50 flex flex-col"
           >
-            {/* Close Button */}
-            <div className="px-4 py-2 border-b border-[var(--gray-light)] shadow-md">
+            {/* Close Button + Logo */}
+            <div className="flex items-center justify-between px-4 py-3 border-b border-[var(--gray-light)] shadow-md">
               <Link
                 href="/"
                 className="text-[var(--blue)] font-extrabold text-2xl tracking-wide"
@@ -82,22 +82,21 @@ const NavigationBar = () => {
               >
                 Jac<span className="text-[var(--purple)]">Skills</span>
               </Link>
-            </div>
-
-            {isOpen && (
-              <div
-                className="fixed top-0 right-0 w-[calc(100%-256px)] h-full md:hidden"
+              <button
+                className="md:hidden text-[var(--blue)] text-2xl active:bg-[var(--black)] active:text-[var(--white)] rounded p-1"
                 onClick={() => setIsOpen(false)}
-              ></div>
-            )}
+              >
+                <FaTimes />
+              </button>
+            </div>
 
             {/* Navigation Links */}
             <nav className="flex flex-col px-4 py-6 space-y-4">
               {navLinks.map((link, index) => (
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.05 }}
                 >
                   <Link

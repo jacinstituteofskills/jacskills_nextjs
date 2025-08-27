@@ -5,13 +5,13 @@ import { motion } from "framer-motion";
 const teamMembers = [
   {
     name: "Hussnain Ali",
-    role: "CEO",
+    role: "Director",
     img: "https://images.unsplash.com/photo-1750535135645-005e250ff210?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHVzZXJ8ZW58MHwyfDB8fHww",
     bio: "Visionary leader driving JacSkills with passion, strategy, and a focus on long-term impact.",
   },
   {
     name: "Muhammad Javeed",
-    role: "COO",
+    role: "Director",
     img: "https://images.unsplash.com/photo-1750535135645-005e250ff210?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHVzZXJ8ZW58MHwyfDB8fHww",
     bio: "Ensures seamless operations and execution, turning ideas into reality with efficiency.",
   },

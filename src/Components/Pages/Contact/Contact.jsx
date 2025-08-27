@@ -1,212 +1,211 @@
 "use client";
-
 import { useState } from "react";
-import { FaPaperPlane, FaUpload } from "react-icons/fa";
-import axios from "axios";
-import { toast } from "react-hot-toast";
-
-const SERVICES = [
-  "Engine Electrical",
-  "Programming",
-  "Hybrid Vehicles",
-  "Electric Vehicles",
-  "Air Conditioning (AC)",
-  "Mechanical Services (Engine, Transmission, Suspension & Steering)",
-  "Other",
-];
+import { db } from "../../Firebase/firebaseConfig";
+import { collection, addDoc, Timestamp } from "firebase/firestore";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
     email: "",
-    services: [],
+    subject: "",
     message: "",
   });
-  const [imageFile, setImageFile] = useState(null);
-  const [imagePreview, setImagePreview] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false); // 👈 loading state
 
-  const handleServiceToggle = (service) => {
-    setFormData((prev) => ({
-      ...prev,
-      services: prev.services.includes(service)
-        ? prev.services.filter((s) => s !== service)
-        : [...prev.services, service],
-    }));
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleImageUpload = (e) => {
-    const file = e.target.files[0];
-    setImageFile(file);
-    if (file) {
-      setImagePreview(URL.createObjectURL(file));
-    } else {
-      setImagePreview(null);
-    }
-  };
+  const validatePhone = (phone) => /^03\d{9}$/.test(phone);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
-    const payload = new FormData();
-    payload.append("name", formData.name);
-    payload.append("phone", formData.phone);
-    payload.append("email", formData.email);
-    payload.append("message", formData.message);
-    payload.append("services", JSON.stringify(formData.services));
-    if (imageFile) payload.append("image", imageFile);
+
+    // Validation
+    if (!formData.name) {
+      return toast.error("Name is required.");
+    }
+    if (!validatePhone(formData.phone)) {
+      return toast.error("Phone must be 11 digits and start with 03.");
+    }
+    if (!formData.subject) {
+      return toast.error("Please tell us what you are looking for.");
+    }
+    if (!formData.message) {
+      return toast.error("Message is required.");
+    }
+    if (formData.email && !/\S+@\S+\.\S+/.test(formData.email)) {
+      return toast.error("Invalid email format.");
+    }
 
     try {
-      const res = await axios.post("/api/v1/contact", payload);
-      toast.success(res.data.message || "Message sent successfully!");
-      setFormData({
-        name: "",
-        phone: "",
-        email: "",
-        services: [],
-        message: "",
+      setLoading(true); // start loading
+      await addDoc(collection(db, "contacts"), {
+        ...formData,
+        createdAt: Timestamp.now(),
       });
-      setImageFile(null);
-      setImagePreview(null);
-    } catch (err) {
-      toast.error(err.response?.data?.message || "Failed to send message.");
+      toast.success("Form submitted successfully!");
+      setFormData({ name: "", phone: "", email: "", subject: "", message: "" });
+    } catch (error) {
+      toast.error("Something went wrong. Please try again.");
     } finally {
-      setLoading(false);
+      setLoading(false); // stop loading
     }
   };
 
   return (
-    <div className="max-w-3xl mx-4 md:mx-auto bg-[var(--white)] p-4 md:p-10 rounded-xl shadow-md mt-10 border border-[var(--gray-border)]">
-      <h2 className="text-3xl font-bold text-[var(--primary-blue)] mb-6 text-center">
-        Arshad Auto
-      </h2>
-
-      <form onSubmit={handleSubmit} className="space-y-5">
-        {/* Name */}
-        <div>
-          <label className="block text-[var(--gray-text-dark)] mb-1 font-medium">
-            Name <span className="text-[var(--error-red)]">*</span>
-          </label>
-          <input
-            required
-            type="text"
-            value={formData.name}
-            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-            className="w-full border border-[var(--gray-border)] px-4 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--primary-blue-light)]"
-          />
-        </div>
-
-        {/* Phone */}
-        <div>
-          <label className="block text-[var(--gray-text-dark)] mb-1 font-medium">
-            Phone Number <span className="text-[var(--error-red)]">*</span>
-          </label>
-          <input
-            required
-            type="tel"
-            value={formData.phone}
-            onChange={(e) =>
-              setFormData({ ...formData, phone: e.target.value })
-            }
-            className="w-full border border-[var(--gray-border)] px-4 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--primary-blue-light)]"
-          />
-        </div>
-
-        {/* Email */}
-        <div>
-          <label className="block text-[var(--gray-text-dark)] mb-1 font-medium">
-            Email (optional)
-          </label>
-          <input
-            type="email"
-            value={formData.email}
-            onChange={(e) =>
-              setFormData({ ...formData, email: e.target.value })
-            }
-            className="w-full border border-[var(--gray-border)] px-4 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--primary-blue-light)]"
-          />
-        </div>
-
-        {/* Services Dropdown */}
-        <div>
-          <label className="block text-[var(--gray-text-dark)] mb-1 font-medium">
-            Select Services <span className="text-[var(--error-red)]">*</span>
-          </label>
-          <div className="bg-[var(--gray-surface)] border border-[var(--gray-border)] rounded-lg p-4 overflow-y-auto shadow-sm">
-            {SERVICES.map((service) => (
-              <label
-                key={service}
-                className="flex items-center p-2 rounded-md cursor-pointer transition-colors hover:bg-[var(--gray-background)]"
-              >
-                <input
-                  type="checkbox"
-                  checked={formData.services.includes(service)}
-                  onChange={() => handleServiceToggle(service)}
-                  className="w-4 h-4 text-[var(--primary-green)] border-[var(--gray-border)] rounded focus:ring-[var(--primary-green)] cursor-pointer"
-                />
-                <span className="ml-3 text-sm text-[var(--gray-text-dark)]">
-                  {service}
-                </span>
-              </label>
-            ))}
-          </div>
-        </div>
-
-        {/* Image Upload */}
-        <div>
-          <label className="block text-[var(--gray-text-dark)] mb-1 font-medium">
-            Upload Car Image (optional)
-          </label>
-          <div className="flex flex-col gap-4">
-            <label className="flex items-center gap-2 bg-[var(--accent-orange)] text-[var(--white)] px-4 py-2 rounded-md cursor-pointer hover:opacity-80 active:opacity-80 transition w-28">
-              <FaUpload />
-              <span>Upload</span>
-              <input
-                type="file"
-                accept="image/*"
-                onChange={handleImageUpload}
-                className="hidden"
-              />
+    <div className="mx-2">
+      <div className="bg-[var(--white)] rounded-2xl shadow-lg hover:shadow-xl transition max-w-2xl mx-auto my-4 md:my-8 py-10 px-4 md:px-6">
+        <h1 className="text-3xl font-bold text-[var(--blue-dark)] mb-6 text-center">
+          Contact Us
+        </h1>
+        <form onSubmit={handleSubmit} className="space-y-5">
+          {/* Name */}
+          <div>
+            <label
+              htmlFor="name"
+              className="text-[var(--green-dark)] text-lg font-bold"
+            >
+              Full Name
             </label>
-            {imagePreview && (
-              <img
-                src={imagePreview}
-                alt="Preview"
-                className="w-auto md:w-60 h-auto object-cover rounded shadow border border-[var(--gray-border)]"
-              />
-            )}
+            <input
+              type="text"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              className="w-full border border-[var(--gray-light)] rounded-lg px-4 py-3 focus:ring-2 focus:ring-[var(--blue-light)] focus:outline-none"
+              placeholder="Full Name"
+            />
+            <p className="text-[var(--gray)] mt-2">
+              Please enter your full name.
+            </p>
           </div>
-        </div>
 
-        {/* Message */}
-        <div>
-          <label className="block text-[var(--gray-text-dark)] mb-1 font-medium">
-            Message <span className="text-[var(--error-red)]">*</span>
-          </label>
-          <textarea
-            required
-            value={formData.message}
-            onChange={(e) =>
-              setFormData({ ...formData, message: e.target.value })
-            }
-            rows="5"
-            className="w-full border border-[var(--gray-border)] px-4 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--primary-blue-light)]"
-          ></textarea>
-        </div>
+          {/* Phone */}
+          <div>
+            <label
+              htmlFor="phone"
+              className="text-[var(--green-dark)] text-lg font-bold"
+            >
+              Phone Number
+            </label>
+            <input
+              type="tel"
+              name="phone"
+              value={formData.phone}
+              onChange={handleChange}
+              className="w-full border border-[var(--gray-light)] rounded-lg px-4 py-3 focus:ring-2 focus:ring-[var(--blue-light)] focus:outline-none"
+              placeholder="03XXXXXXXXX"
+            />
+            <p className="text-[var(--gray)] mt-2">
+              Please enter your phone number.
+            </p>
+          </div>
 
-        {/* Display Error and Success Messages Here */}
+          {/* Email */}
+          <div>
+            <label
+              htmlFor="email"
+              className="text-[var(--green-dark)] text-lg font-bold"
+            >
+              Email (optional)
+            </label>
+            <input
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              className="w-full border border-[var(--gray-light)] rounded-lg px-4 py-3 focus:ring-2 focus:ring-[var(--blue-light)] focus:outline-none"
+              placeholder="Email (optional)"
+            />
+            <p className="text-[var(--gray)] mt-2">Please enter your email.</p>
+          </div>
 
-        {/* Submit */}
-        <button
-          type="submit"
-          disabled={loading}
-          className="bg-[var(--primary-green)] text-[var(--white)] px-4 py-2 font-bold text-center border-2 border-[var(--primary-green)] hover:bg-[var(--white)] hover:text-[var(--primary-green)] active:scale-95 active:bg-transparent active:text-[var(--primary-green)] cursor-pointer sm:transition-all sm:duration-300 ease-in-out rounded-full w-full flex items-center justify-center gap-4"
-        >
-          <FaPaperPlane />
-          {loading ? "Sending..." : "Send Message"}
-        </button>
-      </form>
+          {/* Subject */}
+          <div>
+            <label
+              htmlFor="subject"
+              className="text-[var(--green-dark)] text-lg font-bold"
+            >
+              Subject
+            </label>
+            <input
+              type="text"
+              name="subject"
+              value={formData.subject}
+              onChange={handleChange}
+              className="w-full border border-[var(--gray-light)] rounded-lg px-4 py-3 focus:ring-2 focus:ring-[var(--blue-light)] focus:outline-none"
+              placeholder="What are you looking for. Service or Course?"
+            />
+            <p className="text-[var(--gray)] mt-2">
+              Tell us what you are looking for. Mention the service or course
+              you are interested in.
+            </p>
+          </div>
+
+          {/* Message */}
+          <div>
+            <label
+              htmlFor="message"
+              className="text-[var(--green-dark)] text-lg font-bold"
+            >
+              Message
+            </label>
+            <textarea
+              name="message"
+              rows="4"
+              value={formData.message}
+              onChange={handleChange}
+              className="w-full border border-[var(--gray-light)] rounded-lg px-4 py-3 focus:ring-2 focus:ring-[var(--blue-light)] focus:outline-none"
+              placeholder="Your message..."
+            ></textarea>
+            <p className="text-[var(--gray)] mt-2">
+              Please enter your query or message.
+            </p>
+          </div>
+
+          {/* Submit */}
+          <button
+            type="submit"
+            disabled={loading}
+            className={`w-full py-3 rounded-lg flex justify-center items-center gap-2 font-semibold transition cursor-pointer ${
+              loading
+                ? "bg-[var(--green-light)] text-[var(--white)]"
+                : "bg-[var(--green)] hover:bg-[var(--green-dark)] text-[var(--white)]"
+            }`}
+          >
+            {loading && (
+              <svg
+                className="animate-spin h-5 w-5 text-[var(--white)]"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <circle
+                  className="opacity-25"
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  strokeWidth="4"
+                ></circle>
+                <path
+                  className="opacity-75"
+                  fill="currentColor"
+                  d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+                ></path>
+              </svg>
+            )}
+            {loading ? "Submitting..." : "Submit"}
+          </button>
+        </form>
+
+        {/* Toast Container */}
+        <ToastContainer position="top-center" autoClose={3000} />
+      </div>
     </div>
   );
 };
