@@ -45,6 +45,7 @@ const Contact = () => {
       setLoading(true); // start loading
       await addDoc(collection(db, "contacts"), {
         ...formData,
+        status: "unread",   // 👈 added here
         createdAt: Timestamp.now(),
       });
       toast.success("Form submitted successfully!");

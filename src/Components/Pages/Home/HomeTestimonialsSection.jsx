@@ -3,6 +3,7 @@
 import { FaQuoteLeft, FaQuoteRight } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { PrimaryButton } from "@/Components/ReUseAbleComponents/Buttons/Buttons";
+import Link from "next/link";
 
 const studentTestimonials = [
   {
@@ -125,9 +126,9 @@ const HomeTestimonialsSection = () => {
       </div>
 
       {/* Get a Quote Button */}
-      <div className="text-center mt-8">
+      <Link href="/contact" className="mt-8 flex justify-center items-center">
         <PrimaryButton buttonName="Get a Quote" />
-      </div>
+      </Link>
     </section>
   );
 };
