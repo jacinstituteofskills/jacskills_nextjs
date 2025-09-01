@@ -1,11 +1,16 @@
-import React from 'react'
+import Contact from "@/Components/Pages/Contact/Contact";
+import ServicesDetails from "@/Components/Pages/Services/ServicesDetails";
+import ServicesHeroSection from "@/Components/Pages/Services/ServicesHeroSection";
+import React from "react";
 
 const ServicesPage = () => {
   return (
     <div>
-      Services Page
+      <ServicesHeroSection />
+      <ServicesDetails />
+      <Contact />
     </div>
-  )
-}
+  );
+};
 
-export default ServicesPage
+export default ServicesPage;
