@@ -1,25 +1,36 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
+import { FaUserCircle } from "react-icons/fa";
+
+import ashfaq from "../../../Assets/Images/Ashfaq.jpeg";
+import hussnain from "../../../Assets/Images/Hussnain.jpeg";
 
 const teamMembers = [
   {
     name: "Hussnain Ali",
-    role: "Director",
-    img: "https://images.unsplash.com/photo-1750535135645-005e250ff210?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHVzZXJ8ZW58MHwyfDB8fHww",
-    bio: "Visionary leader driving JacSkills with passion, strategy, and a focus on long-term impact.",
+    role: "Managing Director",
+    img: hussnain,
+    bio: "A strategic leader responsible for operations and long-term planning. Hussnain ensures smooth execution, strong governance, and sustainable growth across all initiatives.",
   },
   {
-    name: "Muhammad Javeed",
-    role: "Director",
-    img: "https://images.unsplash.com/photo-1750535135645-005e250ff210?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHVzZXJ8ZW58MHwyfDB8fHww",
-    bio: "Ensures seamless operations and execution, turning ideas into reality with efficiency.",
+    name: "Ashfaq Ahmed",
+    role: "Chief Executive Officer (CEO)",
+    img: ashfaq,
+    bio: "A visionary entrepreneur with a passion for innovation and team building. Ashfaq leads JacSkills with a results-driven mindset, focusing on impact, quality, and growth.",
   },
   {
     name: "Mirza",
     role: "Principal",
-    img: "https://images.unsplash.com/photo-1750535135645-005e250ff210?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHVzZXJ8ZW58MHwyfDB8fHww",
-    bio: "Academic leader shaping practical learning, guiding learners towards professional success.",
+    // img: ashfaq,
+    bio: "An academic leader committed to practical and industry-relevant education. Mirza bridges the gap between learning and real-world professional success.",
+  },
+  {
+    name: "Habib Ur Rehman",
+    role: "Marketing Director",
+    // img: hussnain,
+    bio: "A creative and data-driven marketer who specializes in brand building, audience engagement, and strategic outreach to drive visibility and growth.",
   },
 ];
 
@@ -41,14 +52,13 @@ const AboutMeetOurTeam = () => {
           Meet Our <span className="text-[var(--green-dark)]">Team</span>
         </h2>
         <p className="mt-4 text-lg md:text-xl text-[var(--gray)] leading-relaxed">
-          We are proud to have a large team of talented professionals. Here are
-          the three main masterminds leading JacSkills, but our journey is
-          powered by many more.
+          Behind JacSkills is a team of dedicated professionals. These leaders
+          guide our vision, strategy, and commitment to excellence.
         </p>
       </div>
 
       {/* Team Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         {teamMembers.map((member, index) => (
           <motion.div
             key={index}
@@ -60,12 +70,18 @@ const AboutMeetOurTeam = () => {
             className="bg-[var(--white)] rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden text-center"
           >
             {/* Image */}
-            <div className="md:h-80 w-full overflow-hidden">
-              <img
-                src={member.img}
-                alt={member.name}
-                className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
-              />
+            <div className="relative h-72 w-full overflow-hidden flex items-center justify-center">
+              {member.img ? (
+                <Image
+                  src={member.img}
+                  alt={member.name}
+                  width={300}
+                  height={300}
+                  className="object-cover w-full h-full hover:scale-105 transition-transform duration-500"
+                />
+              ) : (
+                <FaUserCircle className="text-[var(--gray-dark)] text-7xl" />
+              )}
             </div>
 
             {/* Content */}
@@ -76,7 +92,7 @@ const AboutMeetOurTeam = () => {
               <p className="text-[var(--blue-dark)] font-medium">
                 {member.role}
               </p>
-              <p className="mt-3 text-[var(--gray)] leading-relaxed">
+              <p className="mt-3 text-[var(--gray)] leading-relaxed text-sm md:text-base">
                 {member.bio}
               </p>
             </div>

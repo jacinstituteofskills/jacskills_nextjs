@@ -6,11 +6,11 @@ import { SecondaryButton } from "@/Components/ReUseAbleComponents/Buttons/Button
 
 const courses = [
   {
-    title: "Graphic Designing Masterclass",
+    title: "Expert Level Real Estate Training",
     image:
-      "https://plus.unsplash.com/premium_photo-1721225465446-02f5b991a37f?w=500&auto=format&fit=crop&q=60",
+      "https://images.unsplash.com/photo-1565402170291-8491f14678db?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fHJlYWwlMjBlc3RhdGV8ZW58MHx8MHx8fDA%3D",
     description:
-      "Learn professional graphic designing from scratch. Master Adobe Photoshop, Illustrator, and Canva to create stunning visuals for brands and social media.",
+      "Gain expert-level knowledge of real estate investment, property valuation, market analysis, and client dealing. Learn practical strategies for buying, selling, and managing residential and commercial properties.",
   },
   {
     title: "Digital Marketing Essentials",

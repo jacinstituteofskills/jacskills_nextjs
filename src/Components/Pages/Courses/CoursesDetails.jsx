@@ -1,21 +1,21 @@
 "use client";
 
 import {
-  FaPaintBrush,
   FaBullhorn,
   FaShopify,
   FaLaptopCode,
   FaKeyboard,
+  FaBuilding,
 } from "react-icons/fa";
 import { MdLanguage } from "react-icons/md";
 import { motion } from "framer-motion";
 
 const courses = [
   {
-    title: "Graphic Designing Masterclass",
-    icon: <FaPaintBrush className="text-[var(--purple-dark)] text-4xl" />,
-    img: "https://plus.unsplash.com/premium_photo-1721225465446-02f5b991a37f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8R3JhcGhpYyUyMERlc2lnbmluZyUyME1hc3RlcmNsYXNzfGVufDB8fDB8fHww",
-    desc: "This course takes you from beginner to professional graphic designer. You’ll learn Adobe Photoshop, Illustrator, and Canva tools while understanding design principles such as typography, color theory, and layout composition. By the end, you’ll be able to create logos, posters, social media content, and branding materials that look polished and professional.",
+    title: "Expert Level Real Estate Training",
+    icon: <FaBuilding className="text-[var(--purple-dark)] text-4xl" />,
+    img: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&auto=format&fit=crop&q=60",
+    desc: "Gain expert-level knowledge in real estate investment, property management, market analysis, and client handling. Learn practical strategies for buying, selling, and managing residential and commercial properties, along with marketing and negotiation techniques to maximize returns.",
   },
   {
     title: "Digital Marketing Essentials",

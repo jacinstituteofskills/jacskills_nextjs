@@ -3,9 +3,9 @@
 import {
   FaShopify,
   FaBullhorn,
-  FaPaintBrush,
   FaLaptopCode,
   FaHandshake,
+  FaBuilding,
 } from "react-icons/fa";
 import { MdStoreMallDirectory } from "react-icons/md";
 import { motion } from "framer-motion";
@@ -30,10 +30,10 @@ const services = [
     desc: "Boost your online visibility with targeted digital marketing campaigns. We provide SEO, social media management, paid ads, and email marketing strategies designed to increase brand awareness, generate leads, and improve ROI. Our team combines creativity with analytics to deliver campaigns that truly connect with your audience.",
   },
   {
-    title: "Graphic Designing",
-    icon: <FaPaintBrush className="text-[var(--purple-dark)] text-4xl" />,
-    img: "https://plus.unsplash.com/premium_photo-1661337109411-45b6478c38b9?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8R3JhcGhpYyUyMERlc2lnbmluZ3xlbnwwfHwwfHx8MA%3D%3D",
-    desc: "Our graphic design services cover everything from logo design and branding to social media creatives, brochures, and advertising materials. We create visually appealing designs that represent your brand identity and engage your target audience effectively. Every design is tailored to make your business stand out in a competitive market.",
+    title: "Real Estate Consultancy & Marketing",
+    icon: <FaBuilding className="text-[var(--purple-dark)] text-4xl" />,
+    img: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&auto=format&fit=crop&q=60",
+    desc: "Professional real estate services including property marketing, investment guidance, and client handling. We help agents and investors promote listings, close deals efficiently, and maximize ROI with strategic solutions.",
   },
   {
     title: "Custom Website Development",

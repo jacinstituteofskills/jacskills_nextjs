@@ -27,11 +27,11 @@ const services = [
       "Boost your online presence with data-driven marketing strategies. From social media campaigns to SEO and paid ads, we help you reach the right audience and maximize your return on investment.",
   },
   {
-    title: "Graphic Designing",
+    title: "Real Estate Consultancy & Marketing",
     image:
-      "https://plus.unsplash.com/premium_photo-1661382011487-cd3d6b1d9dff?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8Z3JhcGhpYyUyMGRlc2lnbmluZ3xlbnwwfHwwfHx8MA%3D%3D",
+      "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&auto=format&fit=crop&q=60",
     description:
-      "Stand out with creative designs that communicate your brand’s identity. Our team creates professional logos, banners, social media content, and branding assets tailored to your vision.",
+      "Professional real estate consultancy services covering property marketing, client handling, investment guidance, and deal structuring. We help agents and investors close smarter and more profitable deals.",
   },
   {
     title: "Custom Website Development",
