@@ -4,9 +4,10 @@ import { createClient } from "@/lib/supabase/server";
 import { redirect } from "next/navigation";
 
 /**
- * Login server action (used with useActionState on the /login form).
- * Runs entirely on the server — credentials go straight to Supabase and
- * the resulting session is stored in an httpOnly cookie.
+ * Login server action. Signs in and lets Supabase set the httpOnly session
+ * cookie, then returns success. Navigation happens on the client (router
+ * replace + refresh) — redirecting here in the same call races the cookie
+ * write and can freeze the first login.
  */
 export async function login(values) {
   const email = String(values?.email || "").trim();
@@ -24,7 +25,7 @@ export async function login(values) {
     return { error: "Invalid email or password." };
   }
 
-  redirect("/admin");
+  return { success: true };
 }
 
 /**

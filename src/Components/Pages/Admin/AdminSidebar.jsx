@@ -8,14 +8,13 @@ import {
   Menu,
   X,
   Inbox,
-  LogOut,
   Briefcase,
   GraduationCap,
   Users,
   Home,
 } from "lucide-react";
-import { logout } from "@/Components/actions/auth";
 import Logo from "@/Components/Common/Logo";
+import LogoutButton from "./LogoutButton";
 
 const AdminSidebar = ({ email, unreadLeads = 0 }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -104,15 +103,7 @@ const AdminSidebar = ({ email, unreadLeads = 0 }) => {
           <Home className="h-4 w-4" />
           Back to home
         </Link>
-        <form action={logout}>
-          <button
-            type="submit"
-            className="w-full flex items-center justify-center gap-2 px-3 py-2.5 rounded-lg font-semibold text-[var(--gray-dark)] border border-[var(--gray-light)] hover:bg-[var(--black)] hover:text-white hover:border-[var(--black)] transition-colors cursor-pointer"
-          >
-            <LogOut className="h-4 w-4" />
-            Logout
-          </button>
-        </form>
+        <LogoutButton />
       </div>
     </div>
   );

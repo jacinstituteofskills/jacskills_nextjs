@@ -10,15 +10,6 @@ export const metadata = {
 export default function LoginPage() {
   return (
     <main className="relative min-h-screen flex items-center justify-center px-4 py-12 bg-[var(--offwhite)]">
-      {/* Back to home */}
-      <Link
-        href="/"
-        className="absolute top-5 left-5 inline-flex items-center gap-2 bg-[var(--white)] border border-[var(--gray-light)] text-[var(--gray-dark)] hover:border-[var(--purple)] hover:text-[var(--purple)] font-semibold px-4 py-2 rounded-lg shadow-sm hover:shadow transition-all"
-      >
-        <FaArrowLeft />
-        Back to home
-      </Link>
-
       <div className="w-full max-w-md">
         <div className="bg-[var(--white)] rounded-2xl shadow-xl border border-[var(--gray-light)] p-8">
           {/* Brand + lock */}
@@ -36,6 +27,15 @@ export default function LoginPage() {
           </div>
 
           <LoginForm />
+
+          {/* Back to home — below the form */}
+          <Link
+            href="/"
+            className="mt-6 flex items-center justify-center gap-2 bg-[var(--white)] border border-[var(--gray-light)] text-[var(--gray-dark)] hover:border-[var(--purple)] hover:text-[var(--purple)] font-semibold px-4 py-2.5 rounded-lg transition-all"
+          >
+            <FaArrowLeft />
+            Back to home
+          </Link>
         </div>
 
         <p className="mt-6 text-center text-sm text-[var(--gray)]">

@@ -44,17 +44,28 @@ export async function proxy(request) {
   const isAdminRoute = pathname.startsWith("/admin");
   const isLoginRoute = pathname === "/login";
 
-  if (isAdminRoute && !user) {
+  // Build a redirect that carries over any refreshed auth cookies, so the
+  // session is never dropped on the redirect (a common cause of freezes/loops).
+  const redirectTo = (pathname, extra) => {
     const url = request.nextUrl.clone();
-    url.pathname = "/login";
-    url.searchParams.set("redirectedFrom", pathname);
-    return NextResponse.redirect(url);
+    url.pathname = pathname;
+    url.search = "";
+    if (extra) extra(url);
+    const redirectResponse = NextResponse.redirect(url);
+    response.cookies.getAll().forEach((cookie) =>
+      redirectResponse.cookies.set(cookie)
+    );
+    return redirectResponse;
+  };
+
+  if (isAdminRoute && !user) {
+    return redirectTo("/login", (url) =>
+      url.searchParams.set("redirectedFrom", pathname)
+    );
   }
 
   if (isLoginRoute && user) {
-    const url = request.nextUrl.clone();
-    url.pathname = "/admin";
-    return NextResponse.redirect(url);
+    return redirectTo("/admin");
   }
 
   return response;

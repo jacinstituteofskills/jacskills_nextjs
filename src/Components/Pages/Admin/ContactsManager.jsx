@@ -85,36 +85,67 @@ const ContactsManager = ({ contacts }) => {
                 className={`p-4 md:p-5 gap-0 transition ${busy ? "opacity-60" : ""}`}
               >
                 <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
-                  <div className="min-w-0">
-                    <div className="flex items-center gap-2 flex-wrap">
-                      <h3 className="font-semibold text-foreground">{c.name}</h3>
-                      {unread && <Badge>Unread</Badge>}
+                  <div className="min-w-0 space-y-3">
+                    {/* Name */}
+                    <div className="flex items-start gap-2 flex-wrap">
+                      <div>
+                        <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                          Name
+                        </p>
+                        <h3 className="font-semibold text-foreground">{c.name}</h3>
+                      </div>
+                      {unread && <Badge className="mt-1">Unread</Badge>}
                     </div>
 
-                    <p className="mt-1 font-medium text-foreground">{c.subject}</p>
-                    <p className="mt-1 text-muted-foreground whitespace-pre-wrap break-words">
-                      {c.message}
-                    </p>
+                    {/* Subject */}
+                    <div>
+                      <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                        Subject
+                      </p>
+                      <p className="font-medium text-foreground">{c.subject}</p>
+                    </div>
 
-                    <div className="mt-3 flex flex-wrap gap-x-5 gap-y-1 text-sm text-muted-foreground">
-                      <span className="flex items-center gap-1.5">
-                        <Phone className="h-3.5 w-3.5" />
-                        <a href={`tel:${c.phone}`} className="hover:underline">
+                    {/* Message */}
+                    <div>
+                      <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                        Message
+                      </p>
+                      <p className="text-foreground whitespace-pre-wrap break-words">
+                        {c.message}
+                      </p>
+                    </div>
+
+                    {/* Contact details */}
+                    <div className="grid gap-3 sm:grid-cols-3 pt-1 border-t">
+                      <div>
+                        <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground flex items-center gap-1.5">
+                          <Phone className="h-3 w-3" /> Phone
+                        </p>
+                        <a href={`tel:${c.phone}`} className="text-foreground hover:underline">
                           {c.phone}
                         </a>
-                      </span>
-                      {c.email && (
-                        <span className="flex items-center gap-1.5">
-                          <Mail className="h-3.5 w-3.5" />
-                          <a href={`mailto:${c.email}`} className="hover:underline break-all">
+                      </div>
+                      <div>
+                        <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground flex items-center gap-1.5">
+                          <Mail className="h-3 w-3" /> Email
+                        </p>
+                        {c.email ? (
+                          <a
+                            href={`mailto:${c.email}`}
+                            className="text-foreground hover:underline break-all"
+                          >
                             {c.email}
                           </a>
-                        </span>
-                      )}
-                      <span className="flex items-center gap-1.5">
-                        <Clock className="h-3.5 w-3.5" />
-                        {formatDate(c.created_at)}
-                      </span>
+                        ) : (
+                          <span className="text-muted-foreground">—</span>
+                        )}
+                      </div>
+                      <div>
+                        <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground flex items-center gap-1.5">
+                          <Clock className="h-3 w-3" /> Received
+                        </p>
+                        <p className="text-foreground">{formatDate(c.created_at)}</p>
+                      </div>
                     </div>
                   </div>
 
