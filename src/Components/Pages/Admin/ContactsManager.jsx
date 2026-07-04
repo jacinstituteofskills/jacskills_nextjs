@@ -3,10 +3,10 @@
 import { useState, useTransition } from "react";
 import { Phone, Mail, MailOpen, Clock, Trash2 } from "lucide-react";
 
-import { Card } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Card } from "@/Components/ui/card";
+import { Badge } from "@/Components/ui/badge";
+import { Button } from "@/Components/ui/button";
+import { Tabs, TabsList, TabsTrigger } from "@/Components/ui/tabs";
 import { setContactStatus, deleteContact } from "@/Components/actions/adminContacts";
 import ConfirmDialog from "./ConfirmDialog";
 

@@ -3,8 +3,8 @@
 import { useTransition } from "react";
 import { useRouter } from "next/navigation";
 import { RotateCw, Inbox, Mail, MailOpen } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
+import { Button } from "@/Components/ui/button";
+import { Card } from "@/Components/ui/card";
 import ContactsManager from "./ContactsManager";
 import LeadsSkeleton from "./LeadsSkeleton";
 

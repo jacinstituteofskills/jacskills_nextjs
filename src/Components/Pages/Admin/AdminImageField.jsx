@@ -2,8 +2,8 @@
 
 import { useState, useRef } from "react";
 import { Upload, Link2, X } from "lucide-react";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
+import { Input } from "@/Components/ui/input";
+import { Button } from "@/Components/ui/button";
 import { uploadImage } from "@/Components/actions/adminContent";
 
 /**

@@ -1,4 +1,4 @@
-import { Card } from "@/components/ui/card";
+import { Card } from "@/Components/ui/card";
 
 // Shimmer placeholder for the leads list (shown while refreshing).
 export default function LeadsSkeleton() {
