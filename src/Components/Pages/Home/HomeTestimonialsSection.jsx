@@ -1,134 +1,135 @@
 "use client";
 
-import { FaQuoteLeft, FaQuoteRight } from "react-icons/fa";
 import { motion } from "framer-motion";
-import { PrimaryButton } from "@/Components/ReUseAbleComponents/Buttons/Buttons";
+import { Star, Quote } from "lucide-react";
 import Link from "next/link";
+import { PrimaryButton } from "@/Components/ReUseAbleComponents/Buttons/Buttons";
+import { staggerContainer, fadeUp, viewportOnce } from "@/lib/animations";
 
-const studentTestimonials = [
+const testimonials = [
   {
     name: "Ahmed Ali",
+    role: "Student · Web Development",
     feedback:
-      "The courses are extremely detailed and practical. I could apply the techniques immediately in my projects. The instructors are approachable and always available for guidance.",
+      "The courses are extremely detailed and practical. I could apply the techniques immediately in my projects. The instructors are always available for guidance.",
   },
   {
-    name: "Ali Raza",
+    name: "Sarah Khan",
+    role: "Business Owner · eCommerce",
     feedback:
-      "Excellent learning experience! The curriculum is well-structured, and the real-world projects helped me solidify my skills and gain confidence.",
+      "JacSkills transformed my online business. Their strategic approach to digital marketing increased our leads and overall sales dramatically.",
   },
   {
     name: "Fatima Aslam",
+    role: "Student · Digital Marketing",
     feedback:
-      "I was able to improve my graphic design and digital marketing skills significantly. The hands-on exercises made learning interactive and enjoyable.",
-  },
-  {
-    name: "Hassan Javed",
-    feedback:
-      "A highly professional course platform. The instructors are experts, and the materials are up-to-date. I feel ready to take on real-world projects.",
-  },
-];
-
-const businessTestimonials = [
-  {
-    name: "Sarah Khan",
-    feedback:
-      "JacSkills transformed my online business with their professional services. Their strategic approach to digital marketing increased our leads and overall sales.",
-  },
-  {
-    name: "Fatima Noor",
-    feedback:
-      "Working with JacSkills has been a game-changer. Their expertise in website development and marketing strategies elevated our brand presence online.",
+      "I improved my design and marketing skills significantly. The hands-on exercises made learning interactive and genuinely enjoyable.",
   },
   {
     name: "Usman Qadir",
+    role: "Business Owner · Shopify",
     feedback:
-      "The team provided exceptional support and guidance. Our Shopify store launch was seamless, and their ongoing management services have helped maintain consistent growth.",
+      "Our Shopify store launch was seamless, and their ongoing management services have helped us maintain consistent month-over-month growth.",
+  },
+  {
+    name: "Hassan Javed",
+    role: "Student · IELTS",
+    feedback:
+      "A highly professional platform. The instructors are experts and the materials are up to date. I felt fully prepared for my exam.",
   },
   {
     name: "Ayesha Malik",
+    role: "Business Owner · Marketing",
     feedback:
-      "I highly recommend JacSkills for any business looking to scale. Their attention to detail, professionalism, and results-driven approach are outstanding.",
+      "Attention to detail, professionalism, and a results-driven approach. I highly recommend JacSkills to any business looking to scale.",
   },
 ];
 
+const avatarColors = [
+  "bg-[var(--purple)]",
+  "bg-[var(--blue)]",
+  "bg-[var(--green-dark)]",
+];
+
+const initials = (name) =>
+  name
+    .split(" ")
+    .map((n) => n[0])
+    .slice(0, 2)
+    .join("")
+    .toUpperCase();
+
 const HomeTestimonialsSection = () => {
   return (
-    <section className="px-4 md:px-8 py-8 md:py-12 bg-[var(--offwhite)]">
+    <section className="px-4 md:px-8 py-12 md:py-16 bg-[var(--offwhite)]">
       {/* Section Header */}
       <div className="text-center max-w-2xl mx-auto mb-12">
+        <span className="inline-block text-sm font-semibold uppercase tracking-wider text-[var(--purple)] mb-2">
+          Testimonials
+        </span>
         <h2 className="text-3xl md:text-4xl font-bold text-[var(--gray-dark)]">
           What Our <span className="text-[var(--purple)]">Clients Say</span>
         </h2>
         <p className="mt-4 text-lg text-[var(--gray)]">
-          Hear from our satisfied students and business clients who trusted us
-          for their growth and success.
+          Real results from students and business owners who trusted us with
+          their growth.
         </p>
       </div>
 
-      {/* Student Testimonials */}
-      <div className="mb-12">
-        <h3 className="text-2xl font-semibold text-[var(--blue-dark)] mb-6 text-center">
-          Students
-        </h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {studentTestimonials.map((test, index) => (
-            <motion.div
-              key={index}
-              className="bg-[var(--white)] p-6 rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300 flex flex-col justify-between"
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.2 }}
-              viewport={{ once: true }}
-            >
-              <div className="mb-4">
-                <FaQuoteLeft className="text-[var(--purple)] text-2xl mb-2" />
-                <p className="text-[var(--gray)] text-base leading-relaxed">
-                  {test.feedback}
-                </p>
-                <FaQuoteRight className="text-[var(--purple)] text-2xl mt-2 ml-auto" />
-              </div>
-              <p className="text-[var(--gray-dark)] font-semibold mt-4">
-                — {test.name}
-              </p>
-            </motion.div>
-          ))}
-        </div>
-      </div>
+      {/* Testimonials grid */}
+      <motion.div
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto"
+        variants={staggerContainer}
+        initial="hidden"
+        whileInView="show"
+        viewport={viewportOnce}
+      >
+        {testimonials.map((t, index) => (
+          <motion.article
+            key={t.name}
+            variants={fadeUp}
+            className="relative bg-[var(--white)] p-6 rounded-2xl shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col"
+          >
+            <Quote className="absolute top-5 right-5 h-8 w-8 text-[var(--purple-light)]/40" />
 
-      {/* Business Testimonials */}
-      <div className="mb-12">
-        <h3 className="text-2xl font-semibold text-[var(--green-dark)] mb-6 text-center">
-          Business Owners
-        </h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {businessTestimonials.map((test, index) => (
-            <motion.div
-              key={index}
-              className="bg-[var(--white)] p-6 rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300 flex flex-col justify-between"
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.2 }}
-              viewport={{ once: true }}
-            >
-              <div className="mb-4">
-                <FaQuoteLeft className="text-[var(--purple)] text-2xl mb-2" />
-                <p className="text-[var(--gray)] text-base leading-relaxed">
-                  {test.feedback}
-                </p>
-                <FaQuoteRight className="text-[var(--purple)] text-2xl mt-2 ml-auto" />
-              </div>
-              <p className="text-[var(--gray-dark)] font-semibold mt-4">
-                — {test.name}
-              </p>
-            </motion.div>
-          ))}
-        </div>
-      </div>
+            {/* Rating */}
+            <div className="flex text-[var(--yellow)] mb-4">
+              {Array.from({ length: 5 }).map((_, i) => (
+                <Star key={i} className="h-4 w-4 fill-current" />
+              ))}
+            </div>
 
-      {/* Get a Quote Button */}
-      <Link href="/contact" className="mt-8 flex justify-center items-center">
-        <PrimaryButton buttonName="Get a Quote" />
-      </Link>
+            {/* Feedback */}
+            <p className="text-[var(--gray-dark)] leading-relaxed flex-grow">
+              “{t.feedback}”
+            </p>
+
+            {/* Author */}
+            <div className="mt-6 flex items-center gap-3">
+              <span
+                className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-white font-bold ${
+                  avatarColors[index % avatarColors.length]
+                }`}
+              >
+                {initials(t.name)}
+              </span>
+              <div>
+                <p className="font-bold text-[var(--gray-dark)] leading-tight">
+                  {t.name}
+                </p>
+                <p className="text-sm text-[var(--gray)]">{t.role}</p>
+              </div>
+            </div>
+          </motion.article>
+        ))}
+      </motion.div>
+
+      {/* CTA */}
+      <div className="mt-12 flex justify-center">
+        <Link href="/contact">
+          <PrimaryButton buttonName="Get a Quote" />
+        </Link>
+      </div>
     </section>
   );
 };

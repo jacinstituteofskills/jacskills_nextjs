@@ -20,7 +20,7 @@ const HomeCTASection = () => {
           provide the skills you need to succeed.
         </p>
 
-        {/* Call-to-Action Button */}
+        {/* Single, focused CTA */}
         <Link href="/contact">
           <PrimaryButton buttonName="Get Started Today" />
         </Link>

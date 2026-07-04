@@ -6,12 +6,16 @@ import { usePathname } from "next/navigation";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 import { PrimaryButton } from "../ReUseAbleComponents/Buttons/Buttons";
+import Logo from "./Logo";
 
 const NavigationBar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const pathname = usePathname();
   const isActive = (href) => pathname === href;
+
+  // The public navbar shouldn't appear on the admin panel or login page.
+  if (pathname?.startsWith("/admin") || pathname === "/login") return null;
 
   const navLinks = [
     { label: "Home", href: "/" },
@@ -25,11 +29,8 @@ const NavigationBar = () => {
     <header className="bg-[var(--white)] shadow-md sticky top-0 z-50">
       <div className="flex items-center justify-between px-4 py-2">
         {/* Logo */}
-        <Link
-          href="/"
-          className="text-[var(--blue)] font-extrabold text-2xl tracking-wide"
-        >
-          Jac<span className="text-[var(--purple)]">Skills</span>
+        <Link href="/" aria-label="JacSkills home">
+          <Logo className="h-10 md:h-12 w-auto" priority />
         </Link>
 
         {/* Desktop Menu */}
@@ -77,10 +78,10 @@ const NavigationBar = () => {
             <div className="flex items-center justify-between px-4 py-3 border-b border-[var(--gray-light)] shadow-md">
               <Link
                 href="/"
-                className="text-[var(--blue)] font-extrabold text-2xl tracking-wide"
+                aria-label="JacSkills home"
                 onClick={() => setIsOpen(false)}
               >
-                Jac<span className="text-[var(--purple)]">Skills</span>
+                <Logo className="h-10 w-auto" />
               </Link>
               <button
                 className="md:hidden text-[var(--blue)] text-2xl active:bg-[var(--black)] active:text-[var(--white)] rounded p-1"

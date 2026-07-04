@@ -6,9 +6,24 @@ import AboutOurApproach from "@/Components/Pages/About/AboutOurApproach";
 import AboutOurStory from "@/Components/Pages/About/AboutOurStory";
 import AboutWhatWeDo from "@/Components/Pages/About/AboutWhatWeDo";
 import AboutWhyChooseJacSkills from "@/Components/Pages/About/AboutWhyChooseJacSkills";
-import React from "react";
+import { getTeam } from "@/lib/data/content";
 
-const AboutPage = () => {
+export const metadata = {
+  title: "About Us",
+  description:
+    "Learn about JacSkills — our story, approach, and the team behind our industry-focused skills training and digital services.",
+  alternates: { canonical: "/about" },
+  openGraph: {
+    title: "About JacSkills",
+    description:
+      "Our story, approach and the expert team behind JacSkills' training and digital services.",
+    url: "/about",
+  },
+};
+
+export default async function AboutPage() {
+  const team = await getTeam();
+
   return (
     <div>
       <AboutHeroSection />
@@ -16,11 +31,9 @@ const AboutPage = () => {
       <AboutWhatWeDo />
       <AboutOurApproach />
       <AboutWhyChooseJacSkills />
-      <AboutMeetOurTeam />
+      <AboutMeetOurTeam team={team} />
       <AboutImpactAndAchievements />
       <AboutCallToAction />
     </div>
   );
-};
-
-export default AboutPage;
+}
