@@ -7,7 +7,7 @@
 //    becomes "923001234567".
 // ─────────────────────────────────────────────────────────────
 
-export const WHATSAPP_NUMBER = "92XXXXXXXXXX"; // TODO: set real number
+export const WHATSAPP_NUMBER = "923009805263"; // TODO: set real number
 
 export const SITE = {
   name: "JacSkills",
