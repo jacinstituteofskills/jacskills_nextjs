@@ -1,0 +1,10 @@
+# Netlify configuration
+
+[build.environment]
+  # SUPABASE_URL is a PUBLIC project URL (not a secret). It legitimately
+  # appears in Supabase Storage image URLs that get baked into the
+  # statically-rendered pages, so exclude it from Netlify's secret scanner.
+  #
+  # SUPABASE_ANON_KEY and SUPABASE_SERVICE_ROLE_KEY are intentionally NOT
+  # listed here — they remain scanned so any accidental exposure fails the build.
+  SECRETS_SCAN_OMIT_KEYS = "SUPABASE_URL"
